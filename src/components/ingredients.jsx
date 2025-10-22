@@ -1,4 +1,4 @@
-export default function Ingredients({ ingredient, getRecipe }) {
+export default function Ingredients({ ingredient, getRecipe,recipeSection}) {
   return (
     <section className="flex flex-col gap-6 py-8 px-4 md:px-20 lg:px-36">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -15,7 +15,7 @@ export default function Ingredients({ ingredient, getRecipe }) {
 
       {/* Call-to-Action only if at least 4 ingredients */}
       {ingredient.length >= 4 ? (
-        <div className="bg-gray-50 rounded-2xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6 p-6 mt-8">
+        <div ref={recipeSection} className="bg-gray-50 rounded-2xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6 p-6 mt-8">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-800">
               Ready for a recipe?

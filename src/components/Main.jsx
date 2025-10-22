@@ -1,13 +1,23 @@
-import { useState } from "react";
-import ClaudeRecipe from "./components/clauderecipe";
-import Ingredients from "./components/ingredients";
-import { getRecipeFromMistral } from "./ai";
+ import { useState } from "react";
+ import { useRef } from "react";
+ import { useEffect } from "react";
+import ClaudeRecipe from "./clauderecipe";
+import Ingredients from "./ingredients";
+import { getRecipeFromMistral } from "../ai";
 
 function Main() {
   const [ingredient, setIngredient] = useState([]);
 
   const [recipe, setRecipe] = useState("")
   const [loading, setLoading] = useState(false);
+
+  const recipeSection=useRef(null);
+
+useEffect(() => {
+        if (recipe !== "" && recipeSection.current !== null) {
+            recipeSection.current.scrollIntoView()
+        }
+    }, [recipe])
 
   async function getRecipe() {
     setLoading(true); 
@@ -52,7 +62,7 @@ function Main() {
 
       {/* Ingredients List */}
       {ingredient.length > 0 && (
-        <Ingredients getRecipe={getRecipe} ingredient={ingredient} />
+        <Ingredients getRecipe={getRecipe} ingredient={ingredient} ref={recipeSection}/>
       )}
 
       {/* Recipe Output */}

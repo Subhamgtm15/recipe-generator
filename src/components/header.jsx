@@ -1,4 +1,4 @@
-import header from './headerimage.png';
+import header from "../headerimage.png"
 
 function Header() {
   return (
